@@ -1,0 +1,19 @@
+// Step - 1 
+open("https://app.pagerduty.com/") 
+waitForNoRequest("3000") 
+setStepName("1. Login Page") 
+
+// Step - 2 
+typeAndWait("//*[@id="user_email"]", "catchpointps@gmail.com") 
+type("//*[@id="user_password"]", "1Cp@Pservices") 
+setStepName("2. Enter credentials") 
+
+// Step - 3 
+clickAndWait(//*[@value='Sign In']) 
+waitForNoRequest("3000") 
+setStepName("3. Homepage") 
+
+// Step - 4 
+clickAndWait(//*[@href='/sign_out']) 
+waitForNoRequest("3000") 
+setStepName("4. Logout") 

@@ -1,0 +1,22 @@
+// Step - 1
+open("https://account.box.com/login")
+waitForNoRequest("3000")
+setStepName("1. Login Page")
+
+// Step - 2
+typeAndWait("//*[@name='login']", "catchpointps@gmail.com")
+click("//*[@class='btn btn-primary btn-full-width']")
+waitForElementPresent("//input[@name='password']")
+type("//input[@name='password']", "Cp@Pservices")
+waitForNoRequest("3000")
+setStepName("2. Enter Login Credentials")
+
+// Step - 3
+clickAndWait("//*[@class='btn btn-primary btn-full-width']")
+waitForNoRequest("3000")
+setStepName("3. Homepage")
+
+// Step - 4
+clickAndWait("//*[@href='/logout']")
+waitForNoRequest("3000")
+setStepName("4. Logout")

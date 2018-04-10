@@ -1,0 +1,21 @@
+// Step - 1 
+open("https://www.dropbox.com/login") 
+waitForNoRequest("3000") 
+setStepName("1. Login Page") 
+
+// Step - 2 
+typeAndWait("//input[@name='login_email']", "catchpointps@gmail.com") 
+type("//input[@name='login_password']", "Cp@Pservices") 
+waitForNoRequest("3000") 
+setStepName("2. Enter Login Credentials") 
+
+// Step - 3 
+clickAndWait("//*[@class='login-button button-primary']") 
+waitForNoRequest("3000") 
+setStepName("3. Homepage") 
+
+// Step - 4 
+clickAndWait("//*[@alt='Account photo']") 
+click("//*[text()='Sign out']") 
+waitForNoRequest("3000") 
+setStepName("4. Logout") 

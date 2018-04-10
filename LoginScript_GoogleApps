@@ -1,0 +1,27 @@
+// Step - 1 
+open("https://play.google.com/store") 
+waitForNoRequest("3000") 
+setStepName("1. Homepage - Before Login") 
+
+// Step - 2 
+clickAndWait("//*[text()='Sign in']") 
+waitForNoRequest("3000") 
+setStepName("2. Login Page") 
+type('//*[@id="identifierId"]', 'catchpointps@gmail.com') 
+
+// Step - 3 
+clickAndWait('//*[@id="identifierNext"]') 
+waitForNoRequest("3000") 
+setStepName("3. Password Page") 
+type('//*[@type='password']', 'Cp@Pservices') 
+ 
+// Step - 4 
+clickAndWait('//*[@id="passwordNext"]') 
+waitForNoRequest("3000") 
+setStepName("4. Homepage - After Login") 
+
+// Step - 5 
+clickAndWait("//*[text()='Sign out']") 
+waitForNoRequest("3000") 
+
+setStepName("5. Logout") 

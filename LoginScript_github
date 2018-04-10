@@ -1,0 +1,16 @@
+// Step - 1 
+open("https://github.com/login") 
+waitForNoRequest("3000") 
+setStepName("1. Login Page") 
+type("//*[@id="login_field"]", "catchpointps") 
+type("//*[@id="password"]", "1Cp@Pservices") 
+
+// Step - 2 
+clickAndWait(//*[@name='commit']) 
+waitForNoRequest("3000") 
+setStepName("2. Homepage") 
+
+// Step - 3 
+clickAndWait(//*[@class='dropdown-item dropdown-signout']) 
+waitForNoRequest("3000") 
+setStepName("3. Logout") 

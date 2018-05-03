@@ -1,0 +1,64 @@
+// Step - 1
+open("http://www.walmart.com/")
+setStepName("Homepage")
+waitForElementPresent("//*[@name='query']")
+assertElementPresent("//*[@name='query']")
+
+// Step - 2
+open("https://www.walmart.com/search/?query=candles")
+setStepName("Search Results")
+waitForNoRequest("3000")
+assertTextPresent("results")
+
+// Step - 3
+open("https://www.walmart.com/ip/719-Walnut-Avenue-Mahogany-Driftwood-Scented-Candle-14-oz/38684187")
+setStepName("Product Details")
+assertTextPresent("Add to Cart")
+
+// Step - 4
+clickMouseAndWait("//*[@id='WMItemAddToCartBtn' or @data-tl-id='ProductPrimaryCTA-cta_add_to_cart_button']")
+setStepName("Add to Cart")
+waitForNoRequest("4000")
+assertTextPresent("Check Out")
+
+// Step - 5
+clickAndWait("(//*[@class='btn btn-primary btn-block'])[1]")
+waitForNoRequest("5000")
+setStepName("Checkout")
+
+// Step - 6
+fireEventAndWait("(//*[@type='email'])[1]", "focus")
+type("(//*[@type='email'])[1]", "cptesting09@gmail.com")
+fireEvent("(//*[@type='email'])[1]", "blur")
+typeKeys("(//input)[2]", "dummy123")
+assertTextPresent("Sign In")
+setStepName("Login Begins")
+
+// Step - 7
+clickAndWait("//button[text()='Sign In']")
+setStepName("Login-Confirm Shipping")
+waitForNoRequest("3000")
+assertTextPresent("Change")
+
+// Step - 8
+clickAndWait("//*[text()='Continue']/..")
+waitForNoRequest("3000")
+setStepName("Confirm Shipping Address")
+
+// Step - 9
+clickAndWait("//*[text()='Continue']")
+setStepName("Payment Method")
+waitForNoRequest("3000")
+assertTextPresent("Enter payment method")
+
+// Step - 10
+clickMouseAndWait("//*[@class='checkout-header-cart']/a")
+waitForNoRequest("5000")
+setStepName("Go to Cart")
+assertTextPresent("Check Out")
+
+// Step - 11
+clickAndWait("//*[@data-tl-id='CartRemoveLnk']")
+setStepName("Remove Item")
+waitForNoRequest("3000")
+assertTextPresent("Your cart")

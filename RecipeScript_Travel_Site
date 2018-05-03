@@ -1,0 +1,35 @@
+// Step - 1
+open("https://travel.americanexpress.com/travel/home")
+setStepName("1 - Home")
+waitForElementPresent("//div[@id='flight']")
+
+// Step - 2 
+// Set up search
+typeAndWait("//*[@id='rhFlightFromField']", "LAX")
+fireEvent("//*[@id='rhFlightFromField']", "keydown")
+fireEvent("//*[@id='rhFlightFromField']", "keypress")
+fireEvent("//*[@id='rhFlightFromField']", "input")
+fireEvent("//*[@id='rhFlightFromField']", "keyup")
+pause("1000")
+click("//*[@id="ui-id-1"]/li[2]")
+type("//*[@id='rhFlightToField']", "JFK")
+fireEvent("//*[@id='rhFlightToField']", "keydown")
+fireEvent("//*[@id='rhFlightToField']", "keypress")
+fireEvent("//*[@id='rhFlightToField']", "input")
+fireEvent("//*[@id='rhFlightToField']", "keyup")
+pause(1000)
+click("//*[@id="ui-id-2"]/li[2]")
+// Set outDate 
+var outDate = ${Time(MM/DD/YYYY,60,60)};
+var backDate = ${Time(MM/DD/YYYY,65,65)};
+type("//*[@id='flightStartDate']", "${Var(outDate)}")
+type("//*[@id='flightReturnDate']", "${Var(backDate)}")
+setStepName("2 - Enter Search Details")
+
+
+// Step - 2
+clickAndWait("//*[@id='rhSearchFlight']")
+setStepName("2 - Search")
+var selectIndex = ${Random(1, 4)};
+waitForElementPresent("(//a[text()='Select'])[${var(selectIndex)}]")
+

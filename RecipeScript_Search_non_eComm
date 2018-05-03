@@ -1,0 +1,9 @@
+open("http://www.google.com")
+waitForNoRequest("3000")
+setStepName("1. Google Page")
+var string = ${RandomList('book', 'pen', 'phone', laptop, football)}
+typeKeys("//*[@name='q']", "${var(string)}")
+
+clickAndWait(//*[@name="btnG"])
+waitForNoRequest("3000")
+setStepName("2. Search")

@@ -1,0 +1,16 @@
+// Step - 1
+open(http://www.target.com/)
+waitForNoRequest(3000)
+setStepName("1 - Home")
+fireEvent(//*[@id="search"], "focus")
+var string = ${RandomList('controllers', 'shoes', 'home', health, pets)}
+
+// Step - 2 
+typeKeysAndWait(//*[@id="search"], '${var(string)}')
+waitForNoRequest(3000)
+setStepName("2 - Home")
+
+// Step - 3
+clickAndWait(//*[text()='go'])
+waitForNoRequest(3000)
+setStepName("3 - Search Results")

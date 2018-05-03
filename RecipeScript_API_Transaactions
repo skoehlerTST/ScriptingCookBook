@@ -1,0 +1,14 @@
+// We might need to chage the key and secret values to point to a different account
+// Step - 1 
+open("https://io.catchpoint.com/ui/api/token")
+setNavigatePostData("grant_type=client_credentials&client_id=RW-gb-jTZ4P5ytEW&client_secret=af3ffd9f-71ce-4681-a6ae-c1e1795ce571")
+var token = ${extract('resp-content','regexp:access_token":"([a-zA-Z0-9]+\S+)"')};
+var tokenEncoded = ${base64("${var(token)}")};
+
+// Step - 2 
+open(https://io.catchpoint.com/ui/api/v1/nodes) 
+setHeader("authorization", "Bearer ${var(tokenEncoded)}")
+
+
+
+

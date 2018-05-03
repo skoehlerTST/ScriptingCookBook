@@ -1,0 +1,25 @@
+// Step - 1
+open("https://www.kaspersky.co.za/about")
+waitForUrl("https://www.kaspersky.co.za/resources/template/html/modules/_shared/components/site-header/templates/search-bar_main-nav.html")
+setStepName("1. Africa About Us Page")
+
+// Get the custom metric using JavaScript.
+runScript("var timingObj = timing.getTimes(); var firstPaintTimeVal=timingObj.firstPaintTime;")
+runScript("var totalLoadTimeVal = performance.timing.loadEventEnd - performance.timing.fetchStart;")
+runScript("var totalbackendTimeVal = performance.timing.responseEnd - performance.timing.fetchStart;")
+runScript("var totalfrontendTimeVal = (performance.timing.domComplete - performance.timing.domInteractive) + (performance.timing.domInteractive - performance.timing.responseEnd)")
+runScript("var backendNetworkTimeVal = performance.timing.connectEnd - performance.timing.connectStart;")
+
+// Store the values in script variable.
+storeScriptVariable("firstPaintTime", "firstPaintTimeVal;")
+storeScriptVariable("totalLoadTime", "totalLoadTimeVal;")
+storeScriptVariable("totalbackendTime", "totalbackendTimeVal;")
+storeScriptVariable("totalfrontendTime", "totalfrontendTimeVal;")
+storeScriptVariable("backendNetworkTime", "backendNetworkTimeVal;")
+
+// store the value in indicator.
+setIndicator("token_here", "${var(firstPaintTime)}")
+setIndicator("token_here", "${var(totalLoadTime)}")
+setIndicator("token_here", "${var(totalbackendTime)}")
+setIndicator("token_here", "${var(totalfrontendTime)}")
+setIndicator("token_here", "${var(backendNetworkTime)}")

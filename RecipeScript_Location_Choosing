@@ -1,0 +1,60 @@
+// Need to set this script from Ireland, United Kingdom and Belgium
+// Step - 1
+var country = ${Switch("${CountryName}", "Ireland", "ie/en", "United Kingdom", "gb/en", "Belgium", "be/nl")}
+var zipCode = ${Switch("${CountryName}", "Ireland", "D01 CV97", "United Kingdom", "W1B 4JD", "Belgium", "9050")}
+var address = ${Switch("${CountryName}", "Ireland", "15-20 Grafton Street", "United Kingdom", "137 Regent St, Soho", "Belgium", "Autoroute Bruxelles-Zaventem")}
+var city = ${Switch("${CountryName}", "Ireland", "Dublin", "United Kingdom", "London", "Belgium", "Brussels")}
+var email = ${Switch("${CountryName}", "Ireland", "synthetic.monitor.520@hotmail.com", "United Kingdom", "synthetic.monitor.521@hotmail.com", "Belgium", "synthetic.monitor.522@hotmail.com")}
+var phoneNumber = ${Switch("${CountryName}", "Ireland", "35316797855", "United Kingdom", "07700900001", "Belgium", "027077211")}
+
+open(http://www.ikea.com/${var(country)}/products/storage-furniture/bookcases/billy-bookcase-white-art-00263850/)
+waitForNoRequest("3000")
+waitForElementPresent("//*[@id="IKEA-PageModule-Product-PIP-_Options-button-additem"]")
+setStepName("1. Product Page")
+
+// Step - 2 
+clickMouseAndWait("//*[@id="IKEA-PageModule-Product-PIP-_Options-button-additem"]")
+waitForNoRequest("3000")
+waitForElementPresent("//*[@id="view-shoppingbag-button"]")
+setStepName("2. Add to Shopping Bag")
+
+// Step - 3 
+clickAndWait("//*[@id="view-shoppingbag-button"]")
+waitForNoRequest("3000")
+setStepName("3. View Shopping Bag")
+waitForElementPresent("//*[@class='DeliveryMethod_HomeDelivery__search-controls-submit btn btn-blue btn-medium']")
+type("//*[@id="IKEA-Homedelivery-Enterpostcode-Form-DeliveryMethod_HomeDelivery"]", "${var(zipCode)}")
+
+// Step - 4 
+clickAndWait("//*[@class='DeliveryMethod_HomeDelivery__search-controls-submit btn btn-blue btn-medium']")
+waitForNoRequest("3000")
+waitForElementPresent("//*[@class='delivery-method-options hide-on-print']/a")
+setStepName("4. Enter Postal Code")
+
+// Step - 5 
+clickAndWait("//*[@class='delivery-method-options hide-on-print']/a")
+waitForElementPresent("//*[@id='summary-footer']//button")
+typeKeys("//*[@id="billing-firstName"]", "JohnDoe")
+typeKeys("//*[@id="billing-lastName"]", "Monitoring")
+typeKeys("//*[@id="billing-addressLine1"]", "${var(address)}")
+//typeKeys("//*[@id="billing-postalCode"]", "${var(zipCode)}")
+typeKeys("//*[@id="billing-city"]", "${var(city)}")
+typeKeys("//*[@id="billing-email"]", "${var(email)}")
+typeKeys("//*[@id="billing-confirmEmail"]", "${var(email)}")
+typeKeys("//*[@id="billing-mobileTelephone"]", "${var(phoneNumber)}")
+runScript("document.getElementById("IKEA-PageModule-Checkout-_DeliveryQuestionare-changequestions").selectedIndex=1;")
+click("//*[@id="privacy-policy"]")
+waitForNoRequest("3000")
+setStepName("5. Check Out - Delivery")
+
+// Step - 6 
+clickAndWait("//*[@id='summary-footer']//button")
+waitForNoRequest("3000")
+waitForElementPresent("//*[@class='PaymentProvider__icons']")
+setStepName("6. Check Out - Payment")
+
+
+
+
+
+

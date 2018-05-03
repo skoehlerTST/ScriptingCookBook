@@ -1,0 +1,7 @@
+// Step - 1 
+open("http://www.bathandbodyworks.com/")
+waitForNoRequest("3000")
+setStepName("1. Homepage")
+// Check and close if pop up exists 
+runScript(var closeEle = document.getElementsByClassName("ui-dialog-titlebar-close"); if(closeEle){closeEle[0].click();})
+pause("200")
